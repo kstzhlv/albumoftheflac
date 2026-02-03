@@ -1,9 +1,12 @@
 # Standard
+import os
 import subprocess
 
-def change_directory(directory: str) -> None:
+def change_directory(path: str) -> None:
     try:
-        subprocess.run(["cd", directory])
+        subprocess.run(["cd", path])
     except Exception as e:
-        raise f"There was a problem with changing the directory. Maybe it does not exist.\n{e}"
+        raise Exception(f"There was a problem with changing the directory: {e}")
 
+def delete_file(path: str) -> None:
+    os.remove(path)
