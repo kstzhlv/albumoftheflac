@@ -13,8 +13,8 @@ async def run_tags(directories):
             print(f"Processing {sub_dir}...")
             await set_correct_tags(sub_dir)
 
-        except Exception:
-            print(f"Failed to parse tags for {sub_dir}")
+        except Exception as e:
+            print(f"Failed to parse tags for {sub_dir}: {e}")
 
 
 def parse_args():
