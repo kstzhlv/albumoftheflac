@@ -1,0 +1,28 @@
+[project]
+name = "albumoftheflac"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "Codeling", email = "kostyazhilov03@gmail.com"},
+]
+dependencies = [
+    "aiofiles>=25.1.0",
+    "bs4>=0.0.2",
+    "chardet>=5.2.0",
+]
+requires-python = ">=3.10"
+readme = "README.md"
+license = {text = "MIT"}
+
+[project.scripts]
+aotf = "albumoftheflac.aotf:main"
+
+[tool.uv]
+package = true
+
+[tool.pdm.build]
+package-dir = "sources"
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
