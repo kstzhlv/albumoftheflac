@@ -2,9 +2,8 @@
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
-import chardet
-
 # Third party
+import chardet
 from bs4 import BeautifulSoup
 
 BASE_LINK = "https://www.albumoftheyear.org/"

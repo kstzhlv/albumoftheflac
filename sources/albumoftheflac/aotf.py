@@ -11,7 +11,7 @@ async def run_tags(directories):
     for sub_dir in directories:
         try:
             print(f"Processing {sub_dir}...")
-            await set_correct_tags(str(sub_dir))
+            await set_correct_tags(sub_dir)
 
         except Exception:
             print(f"Failed to parse tags for {sub_dir}")
