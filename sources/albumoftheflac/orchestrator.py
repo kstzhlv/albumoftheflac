@@ -29,6 +29,7 @@ async def set_correct_tags(directory: Path):
     link_for_search = create_link_for_search(artist_tag, album_tag)
     search_content = fetch_page(link_for_search)
     album_link = get_album_link(search_content)
+    print(f"album link: {album_link}")
 
     # get album page from album link
     if album_link is None:
