@@ -3,9 +3,9 @@ import subprocess
 from pathlib import Path
 
 
-def export_tags() -> str:
+def export_tags(album_dir: Path) -> str:
     try:
-        flac_files = [str(f) for f in Path(".").glob("*.flac")]
+        flac_files = list(album_dir.glob("*.flac"))
         if not flac_files:
             raise RuntimeError("No FLAC files were found in this directory")
 

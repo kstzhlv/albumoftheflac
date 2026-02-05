@@ -1,3 +1,6 @@
+# Standard
+from pathlib import Path
+
 # Local
 from albumoftheflac.aoty_parsing import (
     create_link_for_album_page,
@@ -12,12 +15,9 @@ from albumoftheflac.tags import export_tags, get_tag, set_tag
 from albumoftheflac.text import replace_spaces_with_pluses
 
 
-async def set_correct_tags(directory: str):
-    # change directory
-    change_directory(directory)
-
+async def set_correct_tags(directory: Path):
     # get artist and album tags
-    tags = export_tags()
+    tags = export_tags(directory)
     artist = get_tag(tags, "artist")
     album = get_tag(tags, "album")
 
