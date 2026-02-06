@@ -31,7 +31,6 @@ def fetch_page(url: str) -> str:
 
 def get_album_link(html_content: str) -> str | None:
     soup = BeautifulSoup(html_content, "html.parser")
-    print(f"HTML content to search for album link in: {html_content}")
     a = soup.select_one('.albumBlock a[href*="album/"]')
     href = a["href"] if a else None
 
