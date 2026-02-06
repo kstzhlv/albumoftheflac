@@ -23,9 +23,13 @@ def export_tags(album_dir: Path) -> str:
 
 def get_tag(tags: str, tag: str) -> str:
     tag = tag.upper()
-    for line in tags:
-        if tag in line:
-            return line.split(tag)[1]
+    for line in tags.splitlines():
+        if "=" not in line:
+            continue
+        k, v = line.split("=", 1)[1]
+        if tag == k:
+            print(f"key: {k}, value: {v}, tag: {tag}")
+            return v
 
     return ""
 
