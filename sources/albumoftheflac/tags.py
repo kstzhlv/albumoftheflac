@@ -26,11 +26,9 @@ def get_tag(tags: str, tag: str) -> str:
     for line in tags.splitlines():
         if "=" not in line:
             continue
-        k, v = line.split("=", 1)[1]
+        k, v = line.split("=", 1)
         if tag == k:
-            print(f"key: {k}, value: {v}, tag: {tag}")
             return v
-
     return ""
 
 
