@@ -27,6 +27,7 @@ def get_tag(tags: str, tag: str) -> str:
         if "=" not in line:
             continue
         k, v = line.split("=", 1)
+        print(f"DEBUGGING: tags.get_tag(): k: {k}, v: {v}, tag: {tag}")
         if tag == k:
             return v
     return ""
