@@ -33,15 +33,17 @@ def get_tag(tags: str, tag: str) -> str:
     return ""
 
 
-def set_tag(tag_name: str, tag_content: str):
-    try:
-        subprocess.run(
-            [
-                "metaflac",
-                f"--remove-tag={tag_name.upper()}",
-                f'--set-tag="{tag_name.upper()}={tag_content}"',
-                "*.flac",
-            ]
-        )
-    except Exception as e:
-        raise Exception(e)
+def set_tag(album_dir: str, tag_name: str, tag_content: str):
+    flac_files = list(album_dir.glob("*.flac"))
+    if not flac_files:
+        raise RuntimeError("No FLAC files were found")
+
+    tag = tag_name.upper()
+
+    command = ["metaflac", f"--remove-tag={tag}", f"--set-tag={tag}={tag_content}"] + [
+        str(f) for f in flac_files
+    ]
+
+    p = subprocess.run(command, capture_output=True, text=True)
+    if p.returncode != 0:
+        raise RuntimeError(p.stderr.strip() or "metaflac failed")
