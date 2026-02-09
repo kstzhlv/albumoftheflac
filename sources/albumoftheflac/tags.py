@@ -33,7 +33,7 @@ def get_tag(tags: str, tag: str) -> str:
     return ""
 
 
-def set_tag(album_dir: str, tag_name: str, tag_content: str):
+def set_tag(album_dir: Path, tag_name: str, tag_content: str):
     flac_files = list(album_dir.glob("*.flac"))
     if not flac_files:
         raise RuntimeError("No FLAC files were found")
