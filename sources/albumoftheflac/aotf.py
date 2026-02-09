@@ -56,7 +56,9 @@ def main():
         directories_to_process = [base_directory]
 
     else:
-        directories_to_process = [d for d in base_directory.iterdir() if d.is_dir()]
+        directories_to_process = [
+            d for d in base_directory.rglob("*") if d.is_dir() and any(d.glob("*.flac"))
+        ]
 
     asyncio.run(run_tags(directories_to_process))
 
