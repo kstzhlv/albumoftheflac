@@ -10,7 +10,6 @@ from albumoftheflac.aoty_parsing import (
     get_genres_from_album_page,
     get_year_from_album_page,
 )
-from albumoftheflac.filesystem import change_directory
 from albumoftheflac.tags import export_tags, get_tag, set_tag
 from albumoftheflac.text import replace_spaces_with_pluses
 
@@ -46,5 +45,5 @@ async def set_correct_tags(directory: Path):
     year = get_year_from_album_page(album_page)
 
     # set tags
-    set_tag("date", year)
-    set_tag("genre", genres)
+    set_tag(directory, "date", year)
+    set_tag(directory, "genre", genres)
