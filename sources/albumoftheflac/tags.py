@@ -23,7 +23,7 @@ def export_tags(album_dir: Path) -> str:
 
 def get_tag(tags: str, tag: str) -> str:
     tag = tag.upper()
-    for line in tags.splitlines():
+    for line in tags.upper().splitlines():
         if "=" not in line:
             continue
         k, v = line.split("=", 1)
