@@ -26,8 +26,12 @@ async def set_correct_tags(directory: Path):
 
     # get album link from search query
     link_for_search = create_link_for_search(artist_tag, album_tag)
+    print(
+        f"DEBUGGING: orchestrator.set_correct_tags: link for search: {link_for_search}"
+    )
     search_content = fetch_page(link_for_search)
     album_link = get_album_link(search_content)
+    print(f"DEBUGGING: orchestrator.set_correct_tags: album link: {album_link}")
 
     # get album page from album link
     if album_link is None:
