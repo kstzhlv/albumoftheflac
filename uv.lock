@@ -19,10 +19,6 @@ dependencies = [
     { name = "aiofiles" },
     { name = "bs4" },
     { name = "chardet" },
-]
-
-[package.dev-dependencies]
-dev = [
     { name = "loguru" },
 ]
 
@@ -31,10 +27,11 @@ requires-dist = [
     { name = "aiofiles", specifier = ">=25.1.0" },
     { name = "bs4", specifier = ">=0.0.2" },
     { name = "chardet", specifier = ">=5.2.0" },
+    { name = "loguru", specifier = ">=0.7.3" },
 ]
 
 [package.metadata.requires-dev]
-dev = [{ name = "loguru", specifier = ">=0.7.3" }]
+dev = []
 
 [[package]]
 name = "beautifulsoup4"
