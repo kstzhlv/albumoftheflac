@@ -26,3 +26,8 @@ package-dir = "sources"
 [build-system]
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
+
+[dependency-groups]
+dev = [
+    "loguru>=0.7.3",
+]
