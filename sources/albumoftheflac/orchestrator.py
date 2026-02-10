@@ -1,6 +1,9 @@
 # Standard
 from pathlib import Path
 
+# Third party
+from loguru import logger
+
 # Local
 from albumoftheflac.aoty_parsing import (
     create_link_for_album_page,
@@ -17,21 +20,22 @@ from albumoftheflac.text import replace_spaces_with_pluses
 async def set_correct_tags(directory: Path):
     # get artist and album tags
     tags = export_tags(directory)
+    logger.debug(f"tags: {tags}")
     artist = get_tag(tags, "artist")
     album = get_tag(tags, "album")
+    logger.debug(f"artist and album tags: {artist, album}")
 
     # make artist and album tags suitable for links
     artist_tag = replace_spaces_with_pluses(artist)
     album_tag = replace_spaces_with_pluses(album)
+    logger.debug(f"artist and album tags for link: {artist_tag}, {album_tag}")
 
     # get album link from search query
     link_for_search = create_link_for_search(artist_tag, album_tag)
-    print(
-        f"DEBUGGING: orchestrator.set_correct_tags: link for search: {link_for_search}"
-    )
+    logger.debug(f"link for search: {link_for_search}")
     search_content = fetch_page(link_for_search)
     album_link = get_album_link(search_content)
-    print(f"DEBUGGING: orchestrator.set_correct_tags: album link: {album_link}")
+    logger.debug(f"album link: {album_link}")
 
     # get album page from album link
     if album_link is None:
