@@ -46,17 +46,8 @@ def get_genres_from_album_page(html_content: str) -> str:
     return genres_string
 
 
-def get_year_from_album_page(html_content: str) -> str:
-    soup = BeautifulSoup(html_content, "html.parser")
+def get_date_from_album_page(html_content: str) -> str:
+    album_page = BeautifulSoup(html_content, "html.parser")
+    release_date_div = album_page.find("div", class_="detailRow")
 
-    meta_description = soup.find("meta", attrs={"name": "Description"})
-    if meta_description and "content" in meta_description.attrs:
-        content = meta_description["content"].lower()
-        if "released in " in content:
-            year = content.split("released in ")[1][0:4]
-            return year
-
-        else:
-            raise Exception("Failed to parse year from AOTY")
-
-    return ""
+    return release_date_div.get_text(strip=True)
