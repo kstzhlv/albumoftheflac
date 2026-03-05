@@ -1,4 +1,5 @@
 # Standard
+import re
 from datetime import datetime
 from pathlib import Path
 
@@ -46,7 +47,9 @@ async def set_correct_tags(directory: Path):
 
     # get genres and date from album page
     genres = get_genres_from_album_page(album_page)
-    date = get_date_from_album_page(album_page)
+    date = get_date_from_album_page(album_page).split("/")[0]
+    date = re.sub(r"([a-zA-Z]+)(\d{1,2})", r"\1 \2", date)
+    date = re.sub(r"(\d{1,2}),(\d{4})", r"\1, \2", date)
     date_object = datetime.strptime(date, "%B %d, %Y")
     formatted_date = date_object.strftime("%Y-%m-%d")
 
